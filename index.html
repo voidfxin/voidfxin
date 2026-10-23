@@ -857,6 +857,115 @@ footer strong{
     }
 }
 
+/* ===== VOIDFXIN: BLOOD CYBERPUNK ===== */
+
+:root {
+    --void-red: #ff304f;
+    --void-red-soft: rgba(255, 48, 79, 0.18);
+}
+
+/* Dark red atmosphere */
+body {
+    background-color: #030305;
+    background-image:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(110, 0, 20, 0.18),
+            transparent 60%
+        );
+}
+
+/* Subtle scanlines */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.018) 4px
+    );
+}
+
+/* Soft red glow around headings */
+h1,
+h2,
+.section-title {
+    text-shadow: 0 0 10px rgba(255, 48, 79, 0.16);
+}
+
+/* Button effects */
+button,
+.btn,
+.button {
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+button:hover,
+.btn:hover,
+.button:hover {
+    border-color: var(--void-red);
+    box-shadow: 0 0 14px var(--void-red-soft);
+}
+
+/* Card effects */
+.card,
+.portfolio,
+.tournament,
+.form-box {
+    transition:
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.card:hover,
+.portfolio:hover,
+.tournament:hover,
+.form-box:hover {
+    border-color: rgba(255, 48, 79, 0.55);
+    box-shadow: 0 0 18px rgba(255, 48, 79, 0.08);
+}
+
+/* Subtle glitch animation */
+.voidfx-glitch {
+    animation: voidfx-glitch 5s infinite;
+}
+
+@keyframes voidfx-glitch {
+    0%, 94%, 100% {
+        transform: translateX(0);
+        text-shadow: 0 0 10px rgba(255, 48, 79, 0.16);
+    }
+
+    95% {
+        transform: translateX(1px);
+        text-shadow:
+            -2px 0 rgba(255, 48, 79, 0.55),
+            2px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    97% {
+        transform: translateX(-1px);
+    }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 </style>
 </head>
 
