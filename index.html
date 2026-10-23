@@ -1707,7 +1707,9 @@ document
 /* =========================
    ORDER FORM
 ========================= */
-
+emailjs.init({
+    publicKey: "yiItsYNSoWko2k1Wl"
+});
 
 document
 .getElementById("orderForm")
@@ -1787,13 +1789,11 @@ cards.forEach(card => {
 
 });
 
-emailjs.init({
-    publicKey: "yiItsYNSoWko2k1Wl"
-});
+    
    
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
    
 </body>
 </html>
