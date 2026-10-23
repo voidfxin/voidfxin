@@ -1,0 +1,608 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOIDFX | Free Fire Tournament</title>
+
+    <meta
+        name="description"
+        content="VOIDFX Free Fire Tournament and Scrims Hub"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            color: #ffffff;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(130, 0, 255, 0.18), transparent 35%),
+                radial-gradient(circle at 10% 80%, rgba(255, 0, 60, 0.12), transparent 30%),
+                #050507;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+            background-size: 45px 45px;
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 7%;
+
+            background: rgba(5, 5, 7, 0.82);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ff174f;
+        }
+
+        .back-btn {
+            padding: 9px 18px;
+            border: 1px solid rgba(255, 23, 79, 0.5);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: 0.25s ease;
+        }
+
+        .back-btn:hover {
+            background: #ff174f;
+            box-shadow: 0 0 20px rgba(255, 23, 79, 0.35);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 70vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 7%;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            color: #ff174f;
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #ff174f;
+            text-shadow: 0 0 35px rgba(255, 23, 79, 0.45);
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: auto;
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           ACTION CARDS
+        ========================= */
+
+        .actions {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 7% 90px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .action-card {
+            padding: 35px;
+
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.025);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 23, 79, 0.5);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+
+        .action-icon {
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+
+        .action-card h2 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .action-card p {
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            border: none;
+            border-radius: 8px;
+
+            padding: 12px 20px;
+
+            color: white;
+            background: #ff174f;
+
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 23, 79, 0.4);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* =========================
+           AUTH AREA
+        ========================= */
+
+        .auth-section {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 40px 7% 100px;
+        }
+
+        .auth-box {
+            padding: 35px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        .auth-box h2 {
+            font-family: "Orbitron", sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .auth-box .subtext {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #bbb;
+
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .field input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            color: white;
+            background: #0b0b0e;
+
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+
+            outline: none;
+        }
+
+        .field input:focus {
+            border-color: #ff174f;
+            box-shadow: 0 0 0 2px rgba(255,23,79,0.08);
+        }
+
+        .auth-box .btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .switch-text {
+            margin-top: 22px;
+            text-align: center;
+
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .switch-text a {
+            color: #ff174f;
+            font-weight: 600;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info {
+            text-align: center;
+            padding: 0 7% 80px;
+        }
+
+        .info h2 {
+            font-family: "Orbitron", sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            max-width: 650px;
+            margin: auto;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 25px 7%;
+
+            text-align: center;
+
+            color: #666;
+            font-size: 0.8rem;
+
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .hero {
+                min-height: 60vh;
+                padding: 60px 6%;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .auth-section {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .auth-box {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            VOID<span>FX</span>
+        </a>
+
+        <a href="index.html" class="back-btn">
+            ← MAIN SITE
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                VOIDFXIN GAMING
+            </div>
+
+            <h1>
+                FREE FIRE <span>HUB</span>
+            </h1>
+
+            <p>
+                Tournament registrations, scrims,
+                team management and your personal
+                gaming records in one place.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         ACTIONS
+    ========================= -->
+
+    <section class="actions">
+
+        <div class="action-card">
+
+            <div class="action-icon">🔐</div>
+
+            <h2>TEAM LOGIN</h2>
+
+            <p>
+                Login to access your team profile,
+                registrations, bookings, payments
+                and other personal records.
+            </p>
+
+            <a href="#login" class="btn">
+                LOGIN
+            </a>
+
+        </div>
+
+
+        <div class="action-card">
+
+            <div class="action-icon">👥</div>
+
+            <h2>CREATE ACCOUNT</h2>
+
+            <p>
+                Create your team account and keep
+                your tournament and scrim activity
+                connected to one profile.
+            </p>
+
+            <a href="#register" class="btn secondary">
+                CREATE ACCOUNT
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGIN
+    ========================= -->
+
+    <section id="login" class="auth-section">
+
+        <div class="auth-box">
+
+            <h2>TEAM LOGIN</h2>
+
+            <p class="subtext">
+                Login to your VOIDFX gaming account.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="field">
+
+                    <label>EMAIL</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="team@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>PASSWORD</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="btn">
+                    LOGIN
+                </button>
+
+            </form>
+
+            <div class="switch-text">
+                Don't have an account?
+                <a href="#register">
+                    Create Account
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REGISTER
+    ========================= -->
+
+    <section id="register" class="auth-section">
+
+        <div class="auth-box">
+
+            <h2>CREATE TEAM ACCOUNT</h2>
+
+            <p class="subtext">
+                Create your VOIDFX gaming account.
+            </p>
+
+            <form id="registerForm">
+
+                <div class="field">
+
+                    <label>TEAM NAME</label>
+
+                    <input
+                        type="text"
+                        name="team_name"
+                        placeholder="Your Team Name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>LEADER NAME</label>
+
+                    <input
+                        type="text"
+                        name="leader_name"
+                        placeholder="Team Leader Name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>WHATSAPP / PHONE</label>
+
+                    <input
+                        type="tel"
+                       
