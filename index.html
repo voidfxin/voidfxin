@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VOIDFX | Anime • AI • Gaming • Creative</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#030305;
+    color:#fff;
+    font-family:Poppins,sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background:
+        radial-gradient(circle at 15% 20%,rgba(145,0,255,.18),transparent 30%),
+        radial-gradient(circle at 85% 70%,rgba(255,0,70,.13),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(0,120,255,.08),transparent 35%);
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+
+    background-size:50px 50px;
+    pointer-events:none;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#fff;
+    border-radius:50%;
+    opacity:.5;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.6;
+    }
+
+    80%{
+        opacity:.5;
+    }
+
+    100%{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:rgba(3,3,5,.72);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    z-index:1000;
+}
+
+.logo{
+    font-family:Orbitron;
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:4px;
+
+    text-shadow:
+        0 0 10px #8d00ff,
+        0 0 25px rgba(141,0,255,.5);
+}
+
+.logo span{
+    color:#ff174f;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:#999;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+    text-shadow:0 0 12px #ff174f;
+}
+
+.menu{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    padding:130px 8% 80px;
+
+    position:relative;
+}
+
+.hero-content{
+    max-width:700px;
+    z-index:2;
+}
+
+.system{
+    color:#ff174f;
+    font-size:13px;
+    letter-spacing:6px;
+    margin-bottom:20px;
+
+    text-shadow:0 0 12px #ff174f;
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:clamp(50px,8vw,100px);
+    line-height:.9;
+    letter-spacing:-5px;
+}
+
+.hero h1 span{
+    color:#9d00ff;
+
+    text-shadow:
+        0 0 10px #9d00ff,
+        0 0 35px #9d00ff,
+        0 0 70px rgba(157,0,255,.5);
+}
+
+.hero p{
+    color:#aaa;
+    max-width:600px;
+    margin:30px 0;
+
+    font-size:17px;
+    line-height:1.7;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+
+    padding:14px 28px;
+
+    border:1px solid #ff174f;
+    background:rgba(255,23,79,.08);
+
+    color:#fff;
+
+    font-family:Orbitron;
+    font-size:12px;
+    letter-spacing:1px;
+
+    transition:.3s;
+
+    clip-path:polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+    );
+}
+
+.btn:hover{
+    background:#ff174f;
+    box-shadow:0 0 30px rgba(255,23,79,.5);
+    transform:translateY(-3px);
+}
+
+.btn-purple{
+    border-color:#9d00ff;
+}
+
+.btn-purple:hover{
+    background:#9d00ff;
+    box-shadow:0 0 30px rgba(157,0,255,.5);
+}
+
+
+/* =========================
+   ANIME CORE
+========================= */
+
+.anime-core{
+    position:absolute;
+    right:7%;
+    width:470px;
+    height:470px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.core-ring{
+    position:absolute;
+
+    width:430px;
+    height:430px;
+
+    border:1px solid rgba(157,0,255,.4);
+    border-radius:50%;
+
+    box-shadow:
+        0 0 50px rgba(157,0,255,.2);
+
+    animation:spin 15s linear infinite;
+}
+
+.core-ring::before{
+    content:"";
+    position:absolute;
+    inset:35px;
+
+    border:1px solid rgba(255,23,79,.35);
+    border-radius:50%;
+}
+
+.core-ring::after{
+    content:"";
+    position:absolute;
+    inset:80px;
+
+    border:1px dashed rgba(255,255,255,.18);
+    border-radius:50%;
+}
+
+.core{
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,#fff 0%,#c900ff 7%,#6b00ff 30%,#100020 70%);
+
+    box-shadow:
+        0 0 30px #9d00ff,
+        0 0 80px rgba(157,0,255,.7),
+        0 0 140px rgba(157,0,255,.35);
+
+    animation:pulse 2s infinite alternate;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes pulse{
+    from{
+        transform:scale(.9);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:flex;
+    gap:35px;
+    margin-top:40px;
+}
+
+.stat strong{
+    display:block;
+    font-family:Orbitron;
+    font-size:25px;
+}
+
+.stat small{
+    color:#777;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:110px 8%;
+}
+
+.section-heading{
+    margin-bottom:50px;
+}
+
+.section-heading small{
+    color:#ff174f;
+    letter-spacing:5px;
+}
+
+.section-heading h2{
+    font-family:Orbitron;
+    font-size:40px;
+    margin-top:10px;
+}
+
+.section-heading span{
+    color:#9d00ff;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    position:relative;
+
+    padding:30px;
+
+    min-height:230px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,25,35,.9),
+            rgba(5,5,8,.9)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.4s;
+
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+
+    width:100px;
+    height:100px;
+
+    background:#9d00ff;
+    filter:blur(80px);
+
+    opacity:.15;
+
+    right:-30px;
+    top:-30px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    border-color:#9d00ff;
+
+    box-shadow:
+        0 0 35px rgba(157,0,255,.15);
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-family:Orbitron;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#888;
+    line-height:1.7;
+    font-size:14px;
+}
+
+
+/* =========================
+   STORIES
+========================= */
+
+.story-card{
+    min-height:330px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    background-size:cover;
+    background-position:center;
+
+    position:relative;
+}
+
+.story-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            transparent 25%,
+            rgba(0,0,0,.95)
+        );
+}
+
+.story-content{
+    position:relative;
+    z-index:2;
+}
+
+.story-content h3{
+    font-size:20px;
+}
+
+.story-content p{
+    margin:8px 0 15px;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.service-price{
+    margin-top:20px;
+
+    font-family:Orbitron;
+    color:#ff174f;
+    font-size:18px;
+}
+
+
+/* =========================
+   PORTFOLIO
+========================= */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.portfolio{
+    height:260px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18002b,
+            #08000f,
+            #180008
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:Orbitron;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.portfolio::before{
+    content:"VOIDFX";
+
+    position:absolute;
+
+    font-size:80px;
+    color:rgba(255,255,255,.025);
+
+    transform:rotate(-20deg);
+}
+
+.portfolio span{
+    z-index:2;
+    color:#aaa;
+}
+
+
+/* =========================
+   TOURNAMENT
+========================= */
+
+.tournament{
+    border:1px solid #ff174f;
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(255,23,79,.15),
+            transparent 40%
+        ),
+        rgba(15,5,10,.8);
+
+    padding:40px;
+}
+
+.tournament-title{
+    font-family:Orbitron;
+    font-size:35px;
+}
+
+.tournament-title span{
+    color:#ff174f;
+}
+
+.tournament-info{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+
+    margin:35px 0;
+}
+
+.info-box{
+    padding:20px;
+
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.info-box strong{
+    display:block;
+    font-family:Orbitron;
+    font-size:20px;
+}
+
+.info-box small{
+    color:#777;
+}
+
+
+/* =========================
+   FORMS
+========================= */
+
+.form-box{
+    max-width:800px;
+
+    background:rgba(12,12,18,.85);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:35px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    color:#888;
+    font-size:13px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    background:#08080c;
+
+    border:1px solid #24242d;
+
+    color:#fff;
+
+    padding:14px;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+.field textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:#9d00ff;
+    box-shadow:0 0 15px rgba(157,0,255,.15);
+}
+
+.submit{
+    margin-top:20px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.contact-item{
+    padding:30px;
+
+    background:#0b0b10;
+
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.contact-item h3{
+    font-family:Orbitron;
+    margin-bottom:10px;
+}
+
+.contact-item p{
+    color:#888;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:50px 8%;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
+
+    color:#555;
+}
+
+footer strong{
+    color:#9d00ff;
+    font-family:Orbitron;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .anime-core{
+        opacity:.25;
+        right:-100px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .tournament-info{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    section{
+        padding:80px 6%;
+    }
+
+    .hero{
+        padding-left:6%;
+        padding-right:6%;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .anime-core{
+        width:300px;
+        height:300px;
+        right:-100px;
+    }
+
+    .core-ring{
+        width:280px;
+        height:280px;
+    }
+
+    .core{
+        width:110px;
+        height:110px;
+    }
+
+    .cards,
+    .portfolio-grid,
+    .contact-box{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .tournament-info{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        gap:20px;
+    }
+
+    .stat strong{
+        font-size:19px;
+    }
+
+    .section-heading h2{
+        font-size:30px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="grid"></div>
+
+<div class="particles">
+
+    <div class="particle" style="left:5%;animation-delay:1s"></div>
+    <div class="particle" style="left:15%;animation-delay:4s"></div>
+    <div class="particle" style="left:25%;animation-delay:2s"></div>
+    <div class="particle" style="left:35%;animation-delay:6s"></div>
+    <div class="particle" style="left:45%;animation-delay:3s"></div>
+    <div class="particle" style="left:55%;animation-delay:7s"></div>
+    <div class="particle" style="left:65%;animation-delay:2s"></div>
+    <div class="particle" style="left:75%;animation-delay:5s"></div>
+    <div class="particle" style="left:85%;animation-delay:1s"></div>
+    <div class="particle" style="left:95%;animation-delay:6s"></div>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a href="#home" class="logo">
+        VOID<span>FX</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#stories">AI STORIES</a>
+        <a href="#services">SERVICES</a>
+        <a href="#portfolio">PORTFOLIO</a>
+        <a href="#tournament">TOURNAMENT</a>
+        <a href="#contact">CONTACT</a>
+
+    </div>
+
+    <div class="menu">☰</div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="system">
+            SYSTEM ONLINE // VOIDFX
+        </div>
+
+        <h1>
+            ENTER<br>
+            THE <span>VOID</span>
+        </h1>
+
+        <p>
+            AI stories. Anime worlds. Gaming tournaments.
+            Creative services. One dark digital universe.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#services" class="btn">
+                HIRE US
+            </a>
+
+            <a href="#tournament" class="btn btn-purple">
+                JOIN TOURNAMENT
+            </a>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>AI</strong>
+                <small>STORIES</small>
+            </div>
+
+            <div class="stat">
+                <strong>FX</strong>
+                <small>CREATIVE</small>
+            </div>
+
+            <div class="stat">
+                <strong>FF</strong>
+                <small>GAMING</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="anime-core">
+
+        <div class="core-ring"></div>
+
+        <div class="core"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI STORIES
+========================= -->
+
+<section id="stories">
+
+    <div class="section-heading">
+
+        <small>AI UNIVERSE</small>
+
+        <h2>
+            AI <span>STORIES</span>
+        </h2>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card story-card"
+        style="background-image:linear-gradient(transparent,#030305),url('https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=900&q=80');">
+
+            <div class="story-content">
+
+                <div class="card-icon">👁️</div>
+
+                <h3>THE LAST SHADOW</h3>
+
+                <p>
+                    A mysterious anime warrior wakes up
+                    in a world where nobody remembers him.
+                </p>
+
+                <a href="#" class="btn">
+                    WATCH STORY
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card story-card"
+        style="background-image:linear-gradient(transparent,#030305),url('https://images.unsplash.com/photo-1614583224978-f3c4f8f4e5b7?auto=format&fit=crop&w=900&q=80');">
+
+            <div class="story-content">
+
+                <div class="card-icon">☠️</div>
+
+                <h3>NIGHTMARE CITY</h3>
+
+                <p>
+                    Every night the city changes.
+                    One boy is trying to discover why.
+                </p>
+
+                <a href="#" class="btn">
+                    WATCH STORY
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card story-card"
+        style="background-image:linear-gradient(transparent,#030305),url('https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?auto=format&fit=crop&w=900&q=80');">
+
+            <div class="story-content">
+
+                <div class="card-icon">⚔️</div>
+
+                <h3>VOID WARRIOR</h3>
+
+                <p>
+                    An unknown power awakens inside
+                    a young fighter.
+                </p>
+
+                <a href="#" class="btn">
+                    WATCH STORY
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services">
+
+    <div class="section-heading">
+
+        <small>CREATIVE STUDIO</small>
+
+        <h2>
+            OUR <span>SERVICES</span>
+        </h2>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">🎬</div>
+
+            <h3>VIDEO EDITING</h3>
+
+            <p>
+                Gaming edits, reels, shorts,
+                anime edits and cinematic videos.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹299
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🖼️</div>
+
+            <h3>THUMBNAILS</h3>
+
+            <p>
+                Eye-catching thumbnails for
+                YouTube, gaming and social media.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹99
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🤖</div>
+
+            <h3>AI CONTENT</h3>
+
+            <p>
+                AI characters, cartoon stories,
+                images and social media content.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹199
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🌐</div>
+
+            <h3>WEBSITE</h3>
+
+            <p>
+                Modern responsive websites for
+                creators, businesses and gaming teams.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹999
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">📱</div>
+
+            <h3>SOCIAL MEDIA</h3>
+
+            <p>
+                Reels, posts, creative designs
+                and social media branding.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹299
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🎮</div>
+
+            <h3>GAMING CONTENT</h3>
+
+            <p>
+                Free Fire edits, tournament graphics,
+                posters and gaming promotions.
+            </p>
+
+            <div class="service-price">
+                STARTING ₹199
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PORTFOLIO
+========================= -->
+
+<section id="portfolio">
+
+    <div class="section-heading">
+
+        <small>OUR WORK</small>
+
+        <h2>
+            <span>PORTFOLIO</span>
+        </h2>
+
+    </div>
+
+
+    <div class="portfolio-grid">
+
+        <div class="portfolio">
+            <span>AI STORY PROJECT</span>
+        </div>
+
+        <div class="portfolio">
+            <span>ANIME EDIT</span>
+        </div>
+
+        <div class="portfolio">
+            <span>FREE FIRE DESIGN</span>
+        </div>
+
+        <div class="portfolio">
+            <span>WEBSITE PROJECT</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FREE FIRE TOURNAMENT
+========================= -->
+
+<section id="tournament">
+
+    <div class="section-heading">
+
+        <small>VOIDFX GAMING</small>
+
+        <h2>
+            FREE FIRE <span>TOURNAMENT</span>
+        </h2>
+
+    </div>
+
+
+    <div class="tournament">
+
+        <div class="tournament-title">
+            VOIDFX <span>FIRST TOURNAMENT</span>
+        </div>
+
+        <p style="color:#888;margin-top:15px;">
+            Squad battle. Three matches. One champion.
+        </p>
+
+
+        <div class="tournament-info">
+
+            <div class="info-box">
+                <strong>₹150</strong>
+                <small>ENTRY / TEAM</small>
+            </div>
+
+            <div class="info-box">
+                <strong>₹2,800</strong>
+                <small>PRIZE POOL</small>
+            </div>
+
+            <div class="info-box">
+                <strong>24</strong>
+                <small>MAX TEAMS</small>
+            </div>
+
+            <div class="info-box">
+                <strong>3</strong>
+                <small>MATCHES</small>
+            </div>
+
+        </div>
+
+
+        <p style="color:#aaa;line-height:1.8;">
+
+            📅 30 October 2026<br>
+            ⏰ 4:00 PM<br>
+            🎮 4 Player Squad<br>
+            📱 Mobile Players Only<br>
+            🗺️ Bermuda • NexTerra • Solara
+
+        </p>
+
+
+        <br>
+
+        <a href="#registration" class="btn">
+            REGISTER TEAM
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TOURNAMENT REGISTRATION
+========================= -->
+
+<section id="registration">
+
+    <div class="section-heading">
+
+        <small>TOURNAMENT</small>
+
+        <h2>
+            TEAM <span>REGISTRATION</span>
+        </h2>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <form id="tournamentForm">
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label>TEAM NAME</label>
+
+                    <input
+                        type="text"
+                        name="team"
+                        placeholder="Your Team Name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>TEAM LEADER</label>
+
+                    <input
+                        type="text"
+                        name="leader"
+                        placeholder="Leader Name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>CONTACT NUMBER</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="10 Digit Number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>CLASS / SEMESTER</label>
+
+                    <input
+                        type="text"
+                        name="class"
+                        placeholder="Example: BA 3rd Sem"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>PLAYER IDs</label>
+
+                    <textarea
+                        name="players"
+                        placeholder="Player 1 ID
+Player 2 ID
+Player 3 ID
+Player 4 ID"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>PAYMENT REFERENCE</label>
+
+                    <input
+                        type="text"
+                        name="payment"
+                        placeholder="UPI Transaction ID"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button class="btn submit" type="submit">
+                SUBMIT REGISTRATION
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FREELANCE ORDER
+========================= -->
+
+<section id="order">
+
+    <div class="section-heading">
+
+        <small>WORK WITH US</small>
+
+        <h2>
+            PLACE AN <span>ORDER</span>
+        </h2>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <form id="orderForm">
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label>YOUR NAME</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>EMAIL</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>WHATSAPP / PHONE</label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Your Number"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>SERVICE</label>
+
+                    <select name="service" required>
+
+                        <option value="">
+                            Select Service
+                        </option>
+
+                        <option>
+                            Video Editing
+                        </option>
+
+                        <option>
+                            Thumbnail Design
+                        </option>
+
+                        <option>
+                            AI Content
+                        </option>
+
+                        <option>
+                            Website Development
+                        </option>
+
+                        <option>
+                            Social Media Content
+                        </option>
+
+                        <option>
+                            Gaming Content
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>PROJECT DETAILS</label>
+
+                    <textarea
+                        name="details"
+                        placeholder="Tell us what you need..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>BUDGET</label>
+
+                    <input
+                        type="text"
+                        name="budget"
+                        placeholder="Example: ₹1000"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button class="btn submit" type="submit">
+                SEND ORDER
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+    <div class="section-heading">
+
+        <small>CONNECT</small>
+
+        <h2>
+            CONTACT <span>VOIDFX</span>
+        </h2>
+
+    </div>
+
+
+    <div class="contact-box">
+
+        <div class="contact-item">
+
+            <h3>📸 INSTAGRAM</h3>
+
+            <p>
+                AI cartoon stories, anime edits,
+                gaming content and more.
+            </p>
+
+            <br>
+
+            <a href="#" class="btn">
+                @VOIDFX
+            </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+            <h3>📩 BUSINESS</h3>
+
+            <p>
+                For freelance orders and collaborations,
+                use the order form above.
+            </p>
+
+            <br>
+
+            <a href="#order" class="btn btn-purple">
+                PLACE ORDER
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>VOIDFX</strong>
+
+    <br><br>
+
+    AI • ANIME • GAMING • CREATIVE
+
+    <br><br>
+
+    © 2026 VOIDFX. All rights reserved.
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menu = document.querySelector(".menu");
+const navLinks = document.querySelector(".nav-links");
+
+menu.addEventListener("click", () => {
+
+    if(navLinks.style.display === "flex"){
+        navLinks.style.display = "none";
+    }else{
+        navLinks.style.display = "flex";
+        navLinks.style.position = "absolute";
+        navLinks.style.top = "75px";
+        navLinks.style.left = "0";
+        navLinks.style.width = "100%";
+        navLinks.style.padding = "25px";
+        navLinks.style.background = "#050507";
+        navLinks.style.flexDirection = "column";
+    }
+
+});
+
+
+/* =========================
+   TOURNAMENT FORM
+========================= */
+
+document
+.getElementById("tournamentForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const form = new FormData(this);
+
+    const team = form.get("team");
+    const leader = form.get("leader");
+
+    alert(
+        "Registration received!\\n\\n" +
+        "Team: " + team +
+        "\\nLeader: " + leader +
+        "\\n\\nBackend/email integration will be connected in the next step."
+    );
+
+    this.reset();
+
+});
+
+
+/* =========================
+   ORDER FORM
+========================= */
+
+document
+.getElementById("orderForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const form = new FormData(this);
+
+    const name = form.get("name");
+    const service = form.get("service");
+
+    alert(
+        "Order request received!\\n\\n" +
+        "Client: " + name +
+        "\\nService: " + service +
+        "\\n\\nEmail integration will be connected in the backend."
+    );
+
+    this.reset();
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const cards = document.querySelectorAll(".card,.portfolio,.tournament,.form-box");
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.1
+    }
+
+);
+
+
+cards.forEach(card => {
+
+    card.style.opacity = "0";
+    card.style.transform = "translateY(30px)";
+    card.style.transition = "opacity .7s ease, transform .7s ease";
+
+    observer.observe(card);
+
+});
+
+</script>
+
+</body>
+</html>
