@@ -71,29 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 6. Do not pretend tournament registration was sent
-  const tournamentForm = document.getElementById("tournamentForm");
-
-  if (tournamentForm) {
-    tournamentForm.addEventListener("submit", event => {
-      event.preventDefault();
-
-      let message = document.getElementById("tournamentStatus");
-
-      if (!message) {
-        message = document.createElement("p");
-        message.id = "tournamentStatus";
-        message.style.color = "#ff526b";
-        tournamentForm.appendChild(message);
-      }
-
-      message.textContent =
-        "Online registration is not connected yet. " +
-        "Please contact the tournament organiser before making payment.";
-    });
-  }
-
-  // 7. Make comic card visible
+ 
+  // 6. Make comic card visible
   const comicCard = document.querySelector(".comic-card");
 
   if (comicCard) {
