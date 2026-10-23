@@ -1099,7 +1099,7 @@ button:hover,
         <a href="#stories">AI STORIES</a>
         <a href="#services">SERVICES</a>
         <a href="#portfolio">PORTFOLIO</a>
-        <a href="#tournament">TOURNAMENT</a>
+        <a href="ff.html">FF SCRIMS</a>
         <a href="#contact">CONTACT</a>
 
     </div>
@@ -1137,8 +1137,8 @@ button:hover,
                 HIRE US
             </a>
 
-            <a href="#tournament" class="btn btn-purple">
-                JOIN TOURNAMENT
+            <a href="ff.html" class="btn btn-purple">
+                  FF SCRIMS
             </a>
 
         </div>
@@ -1515,126 +1515,6 @@ button:hover,
 </section>
 
 
-<!-- =========================
-     TOURNAMENT REGISTRATION
-========================= -->
-
-<section id="registration">
-
-    <div class="section-heading">
-
-        <small>TOURNAMENT</small>
-
-        <h2>
-            TEAM <span>REGISTRATION</span>
-        </h2>
-
-    </div>
-
-
-    <div class="form-box">
-
-        <form id="tournamentForm">
-
-            <div class="form-grid">
-
-                <div class="field">
-
-                    <label>TEAM NAME</label>
-
-                    <input
-                        type="text"
-                        name="team"
-                        placeholder="Your Team Name"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>TEAM LEADER</label>
-
-                    <input
-                        type="text"
-                        name="leader"
-                        placeholder="Leader Name"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>CONTACT NUMBER</label>
-
-                    <input
-                        type="tel"
-                        name="phone"
-                        placeholder="10 Digit Number"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>CLASS / SEMESTER</label>
-
-                    <input
-                        type="text"
-                        name="class"
-                        placeholder="Example: BA 3rd Sem"
-                    >
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>PLAYER IDs</label>
-
-                    <textarea
-                        name="players"
-                        placeholder="Player 1 ID
-Player 2 ID
-Player 3 ID
-Player 4 ID"
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>PAYMENT REFERENCE</label>
-
-                    <input
-                        type="text"
-                        name="payment"
-                        placeholder="UPI Transaction ID"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <button class="btn submit" type="submit">
-                SUBMIT REGISTRATION
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
 
 <!-- =========================
      FREELANCE ORDER
@@ -1931,32 +1811,6 @@ menu.addEventListener("click", () => {
 
 });
 
-
-/* =========================
-   TOURNAMENT FORM
-========================= */
-
-document
-.getElementById("tournamentForm")
-.addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    const form = new FormData(this);
-
-    const team = form.get("team");
-    const leader = form.get("leader");
-
-    alert(
-        "Registration received!\\n\\n" +
-        "Team: " + team +
-        "\\nLeader: " + leader +
-        "\\n\\nBackend/email integration will be connected in the next step."
-    );
-
-    this.reset();
-
-});
 
 
 /* =========================
