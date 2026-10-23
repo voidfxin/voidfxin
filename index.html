@@ -1708,26 +1708,42 @@ document
    ORDER FORM
 ========================= */
 
+
 document
 .getElementById("orderForm")
-.addEventListener("submit",function(e){
-
+.addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const form = new FormData(this);
-
-    const name = form.get("name");
-    const service = form.get("service");
-
-    alert(
-        "Order request received!\\n\\n" +
-        "Client: " + name +
-        "\\nService: " + service +
-        "\\n\\nEmail integration will be connected in the backend."
+    const form = this;
+    const submitButton = form.querySelector(
+        'button[type="submit"], input[type="submit"]'
     );
 
-    this.reset();
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+    }
 
+    try {
+        await emailjs.sendForm(
+            "service_voidfxin",
+            "template_yn27s8b",
+            form
+        );
+
+        alert("Order submitted successfully! VOIDFXIN will contact you soon.");
+        form.reset();
+
+    } catch (error) {
+        console.error("EmailJS error:", error);
+        alert("Order send nahi hua. Please try again later.");
+
+    } finally {
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit Order";
+        }
+    }
 });
 
 
@@ -1771,7 +1787,13 @@ cards.forEach(card => {
 
 });
 
+emailjs.init({
+    publicKey: "yiItsYNSoWko2k1Wl"
+});
+   
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+   
 </body>
 </html>
