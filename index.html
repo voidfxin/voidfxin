@@ -1792,6 +1792,22 @@ cards.forEach(card => {
 
 });
 
+
+/* ===== VOIDFXIN SUBTLE GLITCH ===== */
+
+(() => {
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reduceMotion) return;
+
+    const headings = document.querySelectorAll("h1");
+
+    if (headings.length > 0) {
+        headings[0].classList.add("voidfx-glitch");
+    }
+})();
     
    
 </script>
