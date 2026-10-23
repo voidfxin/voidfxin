@@ -2,607 +2,847 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>VOIDFX | Free Fire Tournament</title>
-
-    <meta
-        name="description"
-        content="VOIDFX Free Fire Tournament and Scrims Hub"
-    >
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: "Poppins", sans-serif;
-            color: #ffffff;
-            background:
-                radial-gradient(circle at 50% 0%, rgba(130, 0, 255, 0.18), transparent 35%),
-                radial-gradient(circle at 10% 80%, rgba(255, 0, 60, 0.12), transparent 30%),
-                #050507;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(
-                    rgba(255,255,255,0.015) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,0.015) 1px,
-                    transparent 1px
-                );
-            background-size: 45px 45px;
-            z-index: -1;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        input {
-            font: inherit;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 18px 7%;
-
-            background: rgba(5, 5, 7, 0.82);
-            backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .logo {
-            font-family: "Orbitron", sans-serif;
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: #ff174f;
-        }
-
-        .back-btn {
-            padding: 9px 18px;
-            border: 1px solid rgba(255, 23, 79, 0.5);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            transition: 0.25s ease;
-        }
-
-        .back-btn:hover {
-            background: #ff174f;
-            box-shadow: 0 0 20px rgba(255, 23, 79, 0.35);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 70vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 80px 7%;
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        .eyebrow {
-            color: #ff174f;
-            font-family: "Orbitron", sans-serif;
-            font-size: 0.78rem;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-family: "Orbitron", sans-serif;
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            line-height: 1;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 span {
-            color: #ff174f;
-            text-shadow: 0 0 35px rgba(255, 23, 79, 0.45);
-        }
-
-        .hero p {
-            max-width: 620px;
-            margin: auto;
-            color: #aaa;
-            line-height: 1.8;
-        }
-
-        /* =========================
-           ACTION CARDS
-        ========================= */
-
-        .actions {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 7% 90px;
-
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-        }
-
-        .action-card {
-            padding: 35px;
-
-            border: 1px solid rgba(255,255,255,0.09);
-            border-radius: 18px;
-
-            background: rgba(255,255,255,0.025);
-
-            transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                box-shadow 0.25s ease;
-        }
-
-        .action-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 23, 79, 0.5);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
-        }
-
-        .action-icon {
-            font-size: 2rem;
-            margin-bottom: 18px;
-        }
-
-        .action-card h2 {
-            font-family: "Orbitron", sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .action-card p {
-            color: #999;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .btn {
-            display: inline-block;
-
-            border: none;
-            border-radius: 8px;
-
-            padding: 12px 20px;
-
-            color: white;
-            background: #ff174f;
-
-            font-family: "Orbitron", sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-
-            cursor: pointer;
-
-            transition: 0.25s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(255, 23, 79, 0.4);
-        }
-
-        .btn.secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-
-        /* =========================
-           AUTH AREA
-        ========================= */
-
-        .auth-section {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 40px 7% 100px;
-        }
-
-        .auth-box {
-            padding: 35px;
-
-            background: rgba(255,255,255,0.035);
-
-            border: 1px solid rgba(255,255,255,0.09);
-            border-radius: 18px;
-
-            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-        }
-
-        .auth-box h2 {
-            font-family: "Orbitron", sans-serif;
-            margin-bottom: 8px;
-        }
-
-        .auth-box .subtext {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-        }
-
-        .field {
-            margin-bottom: 18px;
-        }
-
-        .field label {
-            display: block;
-            margin-bottom: 8px;
-
-            color: #bbb;
-
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .field input {
-            width: 100%;
-
-            padding: 13px 14px;
-
-            color: white;
-            background: #0b0b0e;
-
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-
-            outline: none;
-        }
-
-        .field input:focus {
-            border-color: #ff174f;
-            box-shadow: 0 0 0 2px rgba(255,23,79,0.08);
-        }
-
-        .auth-box .btn {
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        .switch-text {
-            margin-top: 22px;
-            text-align: center;
-
-            color: #888;
-            font-size: 0.85rem;
-        }
-
-        .switch-text a {
-            color: #ff174f;
-            font-weight: 600;
-        }
-
-        /* =========================
-           INFO
-        ========================= */
-
-        .info {
-            text-align: center;
-            padding: 0 7% 80px;
-        }
-
-        .info h2 {
-            font-family: "Orbitron", sans-serif;
-            margin-bottom: 15px;
-        }
-
-        .info p {
-            max-width: 650px;
-            margin: auto;
-            color: #888;
-            line-height: 1.8;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 25px 7%;
-
-            text-align: center;
-
-            color: #666;
-            font-size: 0.8rem;
-
-            border-top: 1px solid rgba(255,255,255,0.07);
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 700px) {
-
-            .navbar {
-                padding: 15px 5%;
-            }
-
-            .hero {
-                min-height: 60vh;
-                padding: 60px 6%;
-            }
-
-            .actions {
-                grid-template-columns: 1fr;
-                padding-left: 6%;
-                padding-right: 6%;
-            }
-
-            .auth-section {
-                padding-left: 6%;
-                padding-right: 6%;
-            }
-
-            .auth-box {
-                padding: 25px;
-            }
-
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090f">
+  <title>VOIDFX | FF Scrims</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090f;
+      --panel: #12121d;
+      --border: #29283a;
+      --red: #ff3155;
+      --purple: #a855f7;
+      --text: #f5f5fa;
+      --muted: #a5a4b5;
+      --green: #4ade80;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at top, #21102d 0%, transparent 45%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input { font: inherit; }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 7%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9, 9, 15, .9);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font: 800 25px Orbitron, sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .logo span { color: var(--red); }
+
+    .back-btn, .secondary-btn {
+      border: 1px solid var(--border);
+      padding: 11px 16px;
+      border-radius: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .back-btn:hover, .secondary-btn:hover {
+      color: white;
+      border-color: var(--red);
+    }
+
+    .hero {
+      padding: 75px 20px 40px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      letter-spacing: 4px;
+      font: 700 11px Orbitron, sans-serif;
+    }
+
+    h1, h2, h3 { font-family: Orbitron, sans-serif; }
+
+    h1 {
+      font-size: clamp(34px, 7vw, 65px);
+      line-height: 1.15;
+      margin: 18px 0;
+    }
+
+    h1 span {
+      color: var(--red);
+      text-shadow: 0 0 28px #ff315533;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .actions {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .action-card, .auth-box, .dashboard-card {
+      background: linear-gradient(145deg, #151522, #0e0e17);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 15px 45px #0003;
+    }
+
+    .action-card h3 { font-size: 16px; }
+
+    .action-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 42px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 9px;
+      background: linear-gradient(100deg, var(--red), #d92379);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn:disabled { opacity: .55; cursor: wait; transform: none; }
+
+    .secondary-btn {
+      display: inline-block;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .auth-section {
+      padding: 35px 20px 65px;
+      scroll-margin-top: 90px;
+    }
+
+    .auth-box {
+      max-width: 470px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .auth-box h2, .dashboard-card h2 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    .subtext {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      color: #d5d3e0;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 9px;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #090911;
+      color: white;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px #a855f71a;
+    }
+
+    .switch-text {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 22px;
+    }
+
+    .switch-text a { color: #d8a6ff; font-weight: 700; }
+
+    .message {
+      display: none;
+      margin: 16px 0 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .message.show { display: block; }
+    .message.error { color: #ff8094; border-color: #ff315555; }
+    .message.success { color: var(--green); border-color: #4ade8055; }
+
+    .dashboard {
+      max-width: 850px;
+      margin: 25px auto 70px;
+      padding: 20px;
+    }
+
+    .dashboard-card { margin-bottom: 18px; }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .profile-item {
+      padding: 15px;
+      border-radius: 10px;
+      background: #090911;
+      border: 1px solid var(--border);
+      overflow-wrap: anywhere;
+    }
+
+    .profile-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .profile-item strong { font-size: 13px; }
+
+    .notice {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    footer span { color: var(--red); }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 600px) {
+      .navbar { padding: 16px 5%; }
+      .logo { font-size: 21px; }
+      .back-btn { font-size: 10px; padding: 10px; }
+      .hero { padding-top: 55px; }
+      .actions { grid-template-columns: 1fr; padding: 15px 6%; }
+      .auth-section { padding-left: 6%; padding-right: 6%; }
+      .auth-box { padding: 24px; }
+      .profile-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">VOID<span>FX</span></a>
+    <a href="index.html" class="back-btn">← MAIN SITE</a>
+  </nav>
 
-    <!-- =========================
-         NAVBAR
-    ========================= -->
+  <header class="hero">
+    <div class="eyebrow">VOIDFX GAMING COMMUNITY</div>
+    <h1>FF <span>SCRIMS</span></h1>
+    <p>Create your team account, verify your email and manage your team profile. Scrim bookings and payments will be added separately.</p>
+  </header>
 
-    <nav class="navbar">
-
-        <a href="index.html" class="logo">
-            VOID<span>FX</span>
-        </a>
-
-        <a href="index.html" class="back-btn">
-            ← MAIN SITE
-        </a>
-
-    </nav>
-
-
-    <!-- =========================
-         HERO
-    ========================= -->
-
-    <header class="hero">
-
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                VOIDFXIN GAMING
-            </div>
-
-            <h1>
-                FREE FIRE <span>HUB</span>
-            </h1>
-
-            <p>
-                Tournament registrations, scrims,
-                team management and your personal
-                gaming records in one place.
-            </p>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================
-         ACTIONS
-    ========================= -->
-
+  <main id="authArea">
     <section class="actions">
+      <article class="action-card">
+        <h3>TEAM LOGIN</h3>
+        <p>Already registered? Sign in with your verified email address.</p>
+        <a class="btn" href="#login">LOGIN TO ACCOUNT</a>
+      </article>
 
-        <div class="action-card">
-
-            <div class="action-icon">🔐</div>
-
-            <h2>TEAM LOGIN</h2>
-
-            <p>
-                Login to access your team profile,
-                registrations, bookings, payments
-                and other personal records.
-            </p>
-
-            <a href="#login" class="btn">
-                LOGIN
-            </a>
-
-        </div>
-
-
-        <div class="action-card">
-
-            <div class="action-icon">👥</div>
-
-            <h2>CREATE ACCOUNT</h2>
-
-            <p>
-                Create your team account and keep
-                your tournament and scrim activity
-                connected to one profile.
-            </p>
-
-            <a href="#register" class="btn secondary">
-                CREATE ACCOUNT
-            </a>
-
-        </div>
-
+      <article class="action-card">
+        <h3>CREATE ACCOUNT</h3>
+        <p>Register your team and verify your email to get started.</p>
+        <a class="btn" href="#register">CREATE TEAM ACCOUNT</a>
+      </article>
     </section>
-
-
-    <!-- =========================
-         LOGIN
-    ========================= -->
 
     <section id="login" class="auth-section">
+      <div class="auth-box">
+        <h2>TEAM LOGIN</h2>
+        <p class="subtext">Sign in to your VOIDFX gaming account.</p>
 
-        <div class="auth-box">
+        <form id="loginForm">
+          <div class="field">
+            <label for="loginEmail">EMAIL</label>
+            <input id="loginEmail" type="email" name="email" autocomplete="email" placeholder="team@email.com" required>
+          </div>
 
-            <h2>TEAM LOGIN</h2>
+          <div class="field">
+            <label for="loginPassword">PASSWORD</label>
+            <input id="loginPassword" type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
+          </div>
 
-            <p class="subtext">
-                Login to your VOIDFX gaming account.
-            </p>
+          <button class="btn" type="submit">LOGIN</button>
+          <p id="loginMessage" class="message" role="status"></p>
+        </form>
 
-            <form id="loginForm">
-
-                <div class="field">
-
-                    <label>EMAIL</label>
-
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="team@email.com"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>PASSWORD</label>
-
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Your password"
-                        required
-                    >
-
-                </div>
-
-
-                <button type="submit" class="btn">
-                    LOGIN
-                </button>
-
-            </form>
-
-            <div class="switch-text">
-                Don't have an account?
-                <a href="#register">
-                    Create Account
-                </a>
-            </div>
-
-        </div>
-
+        <p class="switch-text">Don't have an account? <a href="#register">Create Account</a></p>
+      </div>
     </section>
 
-
-    <!-- =========================
-         REGISTER
-    ========================= -->
-
     <section id="register" class="auth-section">
+      <div class="auth-box">
+        <h2>CREATE TEAM ACCOUNT</h2>
+        <p class="subtext">Use an email address you can access. Email verification is required.</p>
 
-        <div class="auth-box">
+        <form id="registerForm">
+          <div class="field">
+            <label for="teamName">TEAM NAME</label>
+            <input id="teamName" type="text" name="team_name" maxlength="60" placeholder="Your Team Name" required>
+          </div>
 
-            <h2>CREATE TEAM ACCOUNT</h2>
+          <div class="field">
+            <label for="leaderName">LEADER NAME</label>
+            <input id="leaderName" type="text" name="leader_name" maxlength="80" placeholder="Team Leader Name" required>
+          </div>
 
-            <p class="subtext">
-                Create your VOIDFX gaming account.
-            </p>
+          <div class="field">
+            <label for="contact">WHATSAPP / PHONE</label>
+            <input id="contact" type="tel" name="contact" maxlength="25" autocomplete="tel" placeholder="Your contact number" required>
+          </div>
 
-            <form id="registerForm">
+          <div class="field">
+            <label for="registerEmail">EMAIL</label>
+            <input id="registerEmail" type="email" name="email" autocomplete="email" placeholder="team@email.com" required>
+          </div>
 
-                <div class="field">
+          <div class="field">
+            <label for="registerPassword">PASSWORD</label>
+            <input id="registerPassword" type="password" name="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters" required>
+          </div>
 
-                    <label>TEAM NAME</label>
+          <button class="btn" type="submit">CREATE ACCOUNT</button>
+          <p id="registerMessage" class="message" role="status"></p>
+        </form>
 
-                    <input
-                        type="text"
-                        name="team_name"
-                        placeholder="Your Team Name"
-                        required
-                    >
+        <p class="switch-text">Already registered? <a href="#login">Login</a></p>
+      </div>
+    </section>
+  </main>
 
-                </div>
+  <section id="otpSection" class="auth-section" hidden>
+    <div class="auth-box">
+      <h2>VERIFY YOUR EMAIL</h2>
+      <p class="subtext">Enter the verification code sent to your email address.</p>
 
+      <form id="otpForm">
+        <div class="field">
+          <label for="otpEmail">EMAIL</label>
+          <input id="otpEmail" type="email" autocomplete="email" required>
+        </div>
 
-                <div class="field">
+        <div class="field">
+          <label for="otpCode">EMAIL VERIFICATION CODE</label>
+          <input id="otpCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit code" required>
+        </div>
 
-                    <label>LEADER NAME</label>
+        <button class="btn" type="submit">VERIFY EMAIL</button>
+        <p id="otpMessage" class="message" role="status"></p>
+      </form>
+    </div
+       </section>
 
-                    <input
-                        type="text"
-                        name="leader_name"
-                        placeholder="Team Leader Name"
-                        required
-                    >
+  <section id="dashboard" class="dashboard" hidden>
+    <div class="dashboard-card">
+      <h2>TEAM DASHBOARD</h2>
+      <div id="profileDetails" class="profile-grid"></div>
+      <p id="dashboardMessage" class="message" role="status"></p>
 
-                </div>
+      <button id="editProfileButton" class="secondary-btn" type="button">
+        EDIT TEAM PROFILE
+      </button>
 
+      <button id="logoutButton" class="btn" type="button">
+        LOGOUT
+      </button>
+    </div>
 
-                <div class="field">
+    <div id="profileEditor" class="dashboard-card" hidden>
+      <h2>TEAM PROFILE</h2>
 
-                    <label>WHATSAPP / PHONE</label>
+      <form id="profileForm">
+        <div class="field">
+          <label for="profileTeamName">TEAM NAME</label>
+          <input id="profileTeamName" name="team_name" required>
+        </div>
 
-                    <input
-                        type="tel"
-                       
+        <div class="field">
+          <label for="profileLeaderName">LEADER NAME</label>
+          <input id="profileLeaderName" name="leader_name" required>
+        </div>
+
+        <div class="field">
+          <label for="profileContact">WHATSAPP / PHONE</label>
+          <input id="profileContact" name="contact" type="tel" required>
+        </div>
+
+        <button class="btn" type="submit">SAVE PROFILE</button>
+        <p id="profileMessage" class="message" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © VOIDFX · FF SCRIMS
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+ ```html
+<script>
+(() => {
+  "use strict";
+
+  const SUPABASE_URL = "https://tbjnektyjittcqidqgdb.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_SzG3N9goBMn2emi5Hq-Pbg_WxlbuCRG";
+
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const $ = (selector) => document.querySelector(selector);
+
+  const authArea = $("#authArea");
+  const otpSection = $("#otpSection");
+  const dashboard = $("#dashboard");
+  const profileEditor = $("#profileEditor");
+
+  function message(id, text, type = "error") {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.className = "message show " + type;
+  }
+
+  function clearMessage(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = "";
+    el.className = "message";
+  }
+
+  function busy(button, on, label = "PLEASE WAIT...") {
+    if (!button) return;
+    if (!button.dataset.originalText) {
+      button.dataset.originalText = button.textContent.trim();
+    }
+    button.disabled = on;
+    button.textContent = on ? label : button.dataset.originalText;
+  }
+
+  function errorText(error) {
+    const text = error?.message || "Something went wrong. Please try again.";
+    if (/invalid login credentials/i.test(text)) {
+      return "Email ya password galat hai.";
+    }
+    if (/email not confirmed/i.test(text)) {
+      return "Pehle email OTP verify karo.";
+    }
+    if (/user already registered/i.test(text)) {
+      return "Is email par account pehle se hai. Login try karo.";
+    }
+    return text;
+  }
+
+  function showAuth() {
+    if (authArea) authArea.hidden = false;
+    if (otpSection) otpSection.hidden = true;
+    if (dashboard) dashboard.hidden = true;
+  }
+
+  function showOtp(email) {
+    $("#otpEmail").value = email;
+    authArea.hidden = true;
+    dashboard.hidden = true;
+    otpSection.hidden = false;
+    otpSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function showDashboard() {
+    authArea.hidden = true;
+    otpSection.hidden = true;
+    dashboard.hidden = false;
+    profileEditor.hidden = true;
+    await loadProfile();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  async function loadProfile() {
+    clearMessage("dashboardMessage");
+
+    const { data: { user }, error: userError } = await db.auth.getUser();
+
+    if (userError || !user) {
+      showAuth();
+      return;
+    }
+
+    const { data: team, error } = await db
+      .from("teams")
+      .select("team_name, leader_name, contact")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      message(
+        "dashboardMessage",
+        "Team profile load nahi hua: " + error.message +
+        ". Supabase teams table aur RLS policies check karo."
+      );
+      profileEditor.hidden = false;
+      return;
+    }
+
+    const details = $("#profileDetails");
+    details.replaceChildren();
+
+    [
+      ["TEAM NAME", team?.team_name || "Not added"],
+      ["LEADER NAME", team?.leader_name || "Not added"],
+      ["WHATSAPP / PHONE", team?.contact || "Not added"],
+      ["EMAIL", user.email || ""]
+    ].forEach(([label, value]) => {
+      const item = document.createElement("div");
+      item.className = "profile-item";
+
+      const small = document.createElement("small");
+      small.textContent = label;
+
+      const strong = document.createElement("strong");
+      strong.textContent = value;
+
+      item.append(small, strong);
+      details.appendChild(item);
+    });
+
+    $("#profileTeamName").value = team?.team_name || "";
+    $("#profileLeaderName").value = team?.leader_name || "";
+    $("#profileContact").value = team?.contact || "";
+
+    if (!team) {
+      profileEditor.hidden = false;
+      message(
+        "dashboardMessage",
+        "Email verified. Ab apna team profile complete karo.",
+        "success"
+      );
+    }
+  }
+
+  // CREATE ACCOUNT: team details + email + password
+  $("#registerForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const button = form.querySelector('[type="submit"]');
+    clearMessage("registerMessage");
+    busy(button, true);
+
+    try {
+      const fd = new FormData(form);
+      const email = String(fd.get("email") || "").trim().toLowerCase();
+      const password = String(fd.get("password") || "");
+
+      const team = {
+        team_name: String(fd.get("team_name") || "").trim(),
+        leader_name: String(fd.get("leader_name") || "").trim(),
+        contact: String(fd.get("contact") || "").trim()
+      };
+
+      if (!team.team_name || !team.leader_name || !team.contact || !email || !password) {
+        throw new Error("Team name, leader name, contact, email aur password sab bharo.");
+      }
+
+      if (password.length < 8) {
+        throw new Error("Password kam se kam 8 characters ka hona chahiye.");
+      }
+
+      // Password is never stored in sessionStorage or the teams table.
+      sessionStorage.setItem("voidfx_pending_team", JSON.stringify(team));
+
+      const { data, error } = await db.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.href
+        }
+      });
+
+      if (error) throw error;
+
+      if (data.session && data.user) {
+        // Email confirmation may be disabled in Supabase.
+        await showDashboard();
+        message(
+          "dashboardMessage",
+          "Account created. For mandatory OTP verification, enable Confirm email in Supabase.",
+          "success"
+        );
+        return;
+      }
+
+      showOtp(email);
+      message(
+        "otpMessage",
+        "Email par bheja gaya 6-digit code enter karo.",
+        "success"
+      );
+    } catch (error) {
+      message("registerMessage", errorText(error));
+    } finally {
+      busy(button, false);
+    }
+  });
+
+  // VERIFY EMAIL OTP
+  $("#otpForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const button = form.querySelector('[type="submit"]');
+    clearMessage("otpMessage");
+    busy(button, true, "VERIFYING...");
+
+    try {
+      const email = $("#otpEmail").value.trim().toLowerCase();
+      const token = $("#otpCode").value.trim();
+
+      const { data, error } = await db.auth.verifyOtp({
+        email,
+        token,
+        type: "signup"
+      });
+
+      if (error) throw error;
+      if (!data.user) throw new Error("Verification failed. Dobara try karo.");
+
+      const pending = sessionStorage.getItem("voidfx_pending_team");
+
+      if (pending) {
+        const team = JSON.parse(pending);
+
+        const { error: saveError } = await db.from("teams").insert({
+          user_id: data.user.id,
+          team_name: team.team_name,
+          leader_name: team.leader_name,
+          contact: team.contact
+        });
+
+        if (saveError) {
+          await showDashboard();
+          profileEditor.hidden = false;
+          message(
+            "dashboardMessage",
+            "Email verified, lekin profile save nahi hua: " + saveError.message +
+            ". Profile form se dobara save karo."
+          );
+          return;
+        }
+
+        sessionStorage.removeItem("voidfx_pending_team");
+      }
+
+      await showDashboard();
+      message("dashboardMessage", "Email verified successfully.", "success");
+    } catch (error) {
+      message("otpMessage", errorText(error));
+    } finally {
+      busy(button, false);
+    }
+  });
+
+  // LOGIN
+  $("#loginForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const button = form.querySelector('[type="submit"]');
+    clearMessage("loginMessage");
+    busy(button, true);
+
+    try {
+      const fd = new FormData(form);
+
+      const { error } = await db.auth.signInWithPassword({
+        email: String(fd.get("email") || "").trim().toLowerCase(),
+        password: String(fd.get("password") || "")
+      });
+
+      if (error) throw error;
+
+      sessionStorage.removeItem("voidfx_pending_team");
+      await showDashboard();
+    } catch (error) {
+      message("loginMessage", errorText(error));
+    } finally {
+      busy(button, false);
+    }
+  });
+
+  // OPEN / CLOSE PROFILE EDITOR
+  $("#editProfileButton").addEventListener("click", () => {
+    profileEditor.hidden = !profileEditor.hidden;
+    if (!profileEditor.hidden) {
+      profileEditor.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  // SAVE OR UPDATE TEAM PROFILE
+  $("#profileForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const button = form.querySelector('[type="submit"]');
+    clearMessage("profileMessage");
+    busy(button, true, "SAVING...");
+
+    try {
+      const { data: { user }, error: userError } = await db.auth.getUser();
+      if (userError || !user) throw new Error("Please login again.");
+
+      const team = {
+        team_name: $("#profileTeamName").value.trim(),
+        leader_name: $("#profileLeaderName").value.trim(),
+        contact: $("#profileContact").value.trim()
+      };
+
+      if (!team.team_name || !team.leader_name || !team.contact) {
+        throw new Error("All team profile fields are required.");
+      }
+
+      const { data: existing, error: readError } = await db
+        .from("teams")
+        .select("id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (readError) throw readError;
+
+      const result = existing
+        ? await db.from("teams").update(team).eq("user_id", user.id)
+        : await db.from("teams").insert({ ...team, user_id: user.id });
+
+      if (result.error) throw result.error;
+
+      profileEditor.hidden = true;
+      await loadProfile();
+      message("dashboardMessage", "Team profile saved successfully.", "success");
+    } catch (error) {
+      message("profileMessage", errorText(error));
+    } finally {
+      busy(button, false);
+    }
+  });
+
+  // LOGOUT
+  $("#logoutButton").addEventListener("click", async () => {
+    const { error } = await db.auth.signOut();
+
+    if (error) {
+      message("dashboardMessage", errorText(error));
+      return;
+    }
+
+    sessionStorage.removeItem("voidfx_pending_team");
+    $("#loginForm").reset();
+    $("#registerForm").reset();
+    showAuth();
+    window.location.hash = "login";
+  });
+
+  // RESTORE SESSION ON PAGE RELOAD
+  db.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      console.error("Session check failed:", error.message);
+      showAuth();
+      return;
+    }
+
+    if (data.session) {
+      showDashboard();
+    }
+  });
+
+  db.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT" || !session) {
+      showAuth();
+    }
+  });
+})();
+</script>
+```
+
+</body>
+</html>
+```
+
+</body>
+</html>                  
