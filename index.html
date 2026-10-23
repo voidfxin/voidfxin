@@ -1339,7 +1339,7 @@ button:hover,
 
     <div class="cards">
 
-        <div class="card">
+        <div class="card service-card" data-service="Video Editing" role="button" tabindex="0">
 
             <div class="card-icon">🎬</div>
 
@@ -1357,7 +1357,7 @@ button:hover,
         </div>
 
 
-        <div class="card">
+        <div class="card service-card" data-service="Thumbnails" role="button" tabindex="0">
 
             <div class="card-icon">🖼️</div>
 
@@ -1375,7 +1375,7 @@ button:hover,
         </div>
 
 
-        <div class="card">
+        <div class="card service-card" data-service="Website" role="button" tabindex="0">
 
             <div class="card-icon">🤖</div>
 
@@ -1393,7 +1393,7 @@ button:hover,
         </div>
 
 
-        <div class="card">
+       <div class="card service-card" data-service="Website" role="button" tabindex="0">
 
             <div class="card-icon">🌐</div>
 
@@ -1411,7 +1411,7 @@ button:hover,
         </div>
 
 
-        <div class="card">
+        <div class="card service-card" data-service="Social Media" role="button" tabindex="0">
 
             <div class="card-icon">📱</div>
 
@@ -1429,7 +1429,7 @@ button:hover,
         </div>
 
 
-        <div class="card">
+        <div class="card service-card" data-service="Gaming Content" role="button" tabindex="0">
 
             <div class="card-icon">🎮</div>
 
@@ -2115,7 +2115,60 @@ cards.forEach(card => {
    
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const serviceCards = document.querySelectorAll(
+        "#services .service-card"
+    );
+
+    const orderSection = document.getElementById("order");
+    const serviceSelect = document.querySelector(
+        '#orderForm select[name="service"]'
+    );
+
+    if (!orderSection || !serviceSelect || serviceCards.length === 0) {
+        console.error("VOIDFXIN: Service system could not be initialized.");
+        return;
+    }
+
+    serviceCards.forEach(function (card) {
+
+        function openOrderForm() {
+
+            const serviceName = card.dataset.service;
+
+            serviceSelect.value = serviceName;
+
+            orderSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            setTimeout(function () {
+                serviceSelect.focus({
+                    preventScroll: true
+                });
+            }, 500);
+        }
+
+        card.addEventListener("click", openOrderForm);
+
+        card.addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter" || event.key === " ") {
+
+                event.preventDefault();
+
+                openOrderForm();
+            }
+
+        });
+
+    });
+
+});
+</script>
 <script src="voidfx-fixes.js"></script> 
 </body>
 </html>
