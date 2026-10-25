@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VOIDFX | Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#050509;
+    --panel:#0c0c13;
+    --panel2:#11111a;
+    --border:rgba(255,255,255,.08);
+    --text:#f5f7ff;
+    --muted:#85889a;
+    --cyan:#00eaff;
+    --purple:#8b5cf6;
+    --pink:#ec4899;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#facc15;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:
+        radial-gradient(circle at 20% 0%,rgba(139,92,246,.12),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(0,234,255,.08),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:72px;
+    background:rgba(5,5,9,.82);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    z-index:1000;
+}
+
+.logo{
+    font-family:Orbitron,sans-serif;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.icon-btn:hover{
+    border-color:rgba(0,234,255,.4);
+    background:#11111a;
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:5px 10px 5px 5px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    border-radius:14px;
+}
+
+.avatar{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));
+    color:white;
+    font-weight:800;
+}
+
+.profile-mini span{
+    font-size:13px;
+    font-weight:700;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:72px;
+    bottom:0;
+    width:240px;
+    border-right:1px solid var(--border);
+    background:rgba(7,7,12,.94);
+    padding:22px 14px;
+    z-index:900;
+}
+
+.side-title{
+    color:#55596b;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    padding:0 12px 10px;
+    text-transform:uppercase;
+}
+
+.nav-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:12px 13px;
+    margin-bottom:5px;
+    border-radius:11px;
+    border:1px solid transparent;
+    color:var(--muted);
+    background:transparent;
+    text-align:left;
+    transition:.2s;
+}
+
+.nav-item:hover{
+    color:white;
+    background:rgba(255,255,255,.035);
+}
+
+.nav-item.active{
+    color:white;
+    background:linear-gradient(90deg,rgba(139,92,246,.16),rgba(0,234,255,.05));
+    border-color:rgba(139,92,246,.18);
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+}
+
+.logout{
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:20px;
+    color:#ff7a7a;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:240px;
+    padding:104px 30px 50px;
+    max-width:1500px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-title{
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:28px;
+    font-weight:800;
+}
+
+.page-title p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
+    position:relative;
+    overflow:hidden;
+    padding:32px;
+    border:1px solid var(--border);
+    border-radius:22px;
+    background:
+        linear-gradient(120deg,rgba(139,92,246,.12),rgba(0,234,255,.04)),
+        var(--panel);
+    margin-bottom:24px;
+}
+
+.welcome::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    right:-100px;
+    top:-150px;
+    border-radius:50%;
+    background:rgba(0,234,255,.08);
+    filter:blur(40px);
+}
+
+.welcome h1{
+    font-size:30px;
+    position:relative;
+    z-index:1;
+}
+
+.welcome p{
+    margin-top:8px;
+    color:var(--muted);
+    position:relative;
+    z-index:1;
+}
+
+.welcome-badge{
+    display:inline-flex;
+    margin-bottom:13px;
+    padding:6px 10px;
+    border-radius:20px;
+    background:rgba(0,234,255,.08);
+    border:1px solid rgba(0,234,255,.16);
+    color:var(--cyan);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:24px;
+}
+
+.stat{
+    padding:21px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    border-radius:17px;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:9px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+}
+
+.stat-small{
+    margin-top:7px;
+    color:var(--green);
+    font-size:11px;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:20px;
+}
+
+.panel{
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:var(--panel);
+    padding:20px;
+}
+
+.panel-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.panel-head h2{
+    font-size:17px;
+}
+
+.view-all{
+    color:var(--cyan);
+    font-size:12px;
+    cursor:pointer;
+}
+
+/* ================= TOURNAMENT ================= */
+
+.tournament{
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:rgba(255,255,255,.018);
+    margin-bottom:10px;
+}
+
+.tournament:last-child{
+    margin-bottom:0;
+}
+
+.t-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.t-title{
+    font-weight:800;
+}
+
+.status{
+    font-size:10px;
+    padding:5px 8px;
+    border-radius:7px;
+    font-weight:800;
+}
+
+.status.live{
+    background:rgba(239,68,68,.12);
+    color:#ff7070;
+}
+
+.status.open{
+    background:rgba(34,197,94,.12);
+    color:#4ade80;
+}
+
+.status.closed{
+    background:rgba(255,255,255,.08);
+    color:#999;
+}
+
+.t-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:13px;
+}
+
+.t-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.join-btn{
+    border:none;
+    padding:9px 15px;
+    border-radius:9px;
+    color:white;
+    background:linear-gradient(135deg,var(--purple),#6d42d8);
+    font-size:11px;
+    font-weight:800;
+}
+
+.join-btn:hover{
+    transform:translateY(-1px);
+}
+
+/* ================= LEADERBOARD ================= */
+
+.rank-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.rank-row:last-child{
+    border-bottom:none;
+}
+
+.rank{
+    width:25px;
+    font-weight:800;
+    color:var(--muted);
+}
+
+.rank.first{
+    color:var(--yellow);
+}
+
+.rank-name{
+    flex:1;
+    font-weight:600;
+    font-size:13px;
+}
+
+.points{
+    font-weight:800;
+    font-size:13px;
+}
+
+/* ================= TEAM ================= */
+
+.team-card{
+    padding:20px;
+    border-radius:17px;
+    border:1px solid var(--border);
+    background:
+        linear-gradient(135deg,rgba(139,92,246,.09),rgba(0,234,255,.02)),
+        var(--panel);
+}
+
+.team-name{
+    font-family:Orbitron,sans-serif;
+    font-size:17px;
+    margin-bottom:17px;
+}
+
+.players{
+    display:grid;
+    gap:9px;
+}
+
+.player{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    background:rgba(255,255,255,.025);
+    border-radius:10px;
+}
+
+.player-avatar{
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    background:#191925;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:13px;
+}
+
+.player-name{
+    font-size:12px;
+    font-weight:700;
+}
+
+.player-role{
+    margin-left:auto;
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* ================= NOTIFICATIONS ================= */
+
+.notification{
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.notification:last-child{
+    border:none;
+}
+
+.n-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,234,255,.08);
+}
+
+.n-text{
+    font-size:12px;
+    line-height:1.5;
+}
+
+.n-time{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    color:#666a7a;
+    font-size:10px;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    padding:12px;
+    border-bottom:1px solid var(--border);
+}
+
+td{
+    padding:15px 12px;
+    font-size:12px;
+    border-bottom:1px solid var(--border);
+}
+
+tr:last-child td{
+    border:none;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+    max-width:700px;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:var(--panel);
+}
+
+.profile-large{
+    width:80px;
+    height:80px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:800;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));
+    margin-bottom:20px;
+}
+
+.profile-card h2{
+    margin-bottom:5px;
+}
+
+.email{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:25px;
+}
+
+.info{
+    padding:15px;
+    border:1px solid var(--border);
+    border-radius:12px;
+}
+
+.info-label{
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:6px;
+}
+
+.info-value{
+    font-size:13px;
+    font-weight:700;
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.setting:last-child{
+    border:none;
+}
+
+.setting-title{
+    font-weight:700;
+    font-size:13px;
+}
+
+.setting-description{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+.toggle{
+    width:42px;
+    height:23px;
+    border-radius:20px;
+    background:var(--purple);
+    position:relative;
+}
+
+.toggle::after{
+    content:"";
+    position:absolute;
+    width:17px;
+    height:17px;
+    background:white;
+    border-radius:50%;
+    right:3px;
+    top:3px;
+}
+
+/* ================= MOBILE ================= */
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:1000px){
+
+    .sidebar{
+        width:72px;
+    }
+
+    .sidebar .side-title,
+    .sidebar .nav-item span:not(.nav-icon){
+        display:none;
+    }
+
+    .nav-item{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:72px;
+    }
+
+}
+
+@media(max-width:750px){
+
+    .navbar{
+        padding:0 15px;
+    }
+
+    .profile-mini span{
+        display:none;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding:92px 15px 35px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .welcome{
+        padding:23px;
+    }
+
+    .welcome h1{
+        font-size:23px;
+    }
+
+    .page-title h1{
+        font-size:23px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mobile-menu{
+        display:flex;
+    }
+}
+
+@media(max-width:430px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .stats .stat{
+        padding:16px;
+    }
+
+    .t-meta{
+        gap:8px;
+    }
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#050509;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:14px;
+}
+
+.loading-logo{
+    font-family:Orbitron,sans-serif;
+    font-size:28px;
+    letter-spacing:3px;
+}
+
+.loading-logo span{
+    color:var(--cyan);
+}
+
+.loader{
+    width:35px;
+    height:35px;
+    border:3px solid rgba(255,255,255,.08);
+    border-top-color:var(--cyan);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOADING ================= -->
+
+<div class="loading" id="loading">
+    <div class="loading-logo">VOID<span>FX</span></div>
+    <div class="loader"></div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        VOID<span>FX</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="icon-btn" onclick="showPage('notifications')">
+            🔔
+        </button>
+
+        <div class="profile-mini">
+            <div class="avatar" id="navAvatar">V</div>
+            <span id="navName">Loading...</span>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="side-title">Workspace</div>
+
+    <button class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+        <span class="nav-icon">⌂</span>
+        <span>Dashboard</span>
+    </button>
+
+    <button class="nav-item" data-page="tournaments" onclick="showPage('tournaments')">
+        <span class="nav-icon">🏆</span>
+        <span>Tournaments</span>
+    </button>
+
+    <button class="nav-item" data-page="teams" onclick="showPage('teams')">
+        <span class="nav-icon">👥</span>
+        <span>My Teams</span>
+    </button>
+
+    <button class="nav-item" data-page="leaderboard" onclick="showPage('leaderboard')">
+        <span class="nav-icon">📊</span>
+        <span>Leaderboard</span>
+    </button>
+
+    <button class="nav-item" data-page="notifications" onclick="showPage('notifications')">
+        <span class="nav-icon">🔔</span>
+        <span>Notifications</span>
+    </button>
+
+    <div class="side-title" style="margin-top:25px;">Account</div>
+
+    <button class="nav-item" data-page="profile" onclick="showPage('profile')">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+    </button>
+
+    <button class="nav-item" data-page="settings" onclick="showPage('settings')">
+        <span class="nav-icon">⚙</span>
+        <span>Settings</span>
+    </button>
+
+    <button class="nav-item logout" onclick="logout()">
+        <span class="nav-icon">↪</span>
+        <span>Logout</span>
+    </button>
+
+</aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="page active" id="dashboard">
+
+    <div class="welcome">
+
+        <div class="welcome-badge">
+            VOIDFX PLAYER HUB
+        </div>
+
+        <h1>Welcome back, <span id="welcomeName">Player</span> 👋</h1>
+
+        <p>Your tournaments, teams and stats are all in one place.</p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-label">TOURNAMENTS</div>
+            <div class="stat-value">6</div>
+            <div class="stat-small">↑ 2 this month</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">MATCHES</div>
+            <div class="stat-value">24</div>
+            <div class="stat-small">↑ 8 wins</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">TOTAL KILLS</div>
+            <div class="stat-value">137</div>
+            <div class="stat-small">+18 this week</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">PRIZE WON</div>
+            <div class="stat-value">₹2,400</div>
+            <div class="stat-small">+₹800 recently</div>
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <h2>Upcoming Tournaments</h2>
+                <span class="view-all" onclick="showPage('tournaments')">
+                    View all
+                </span>
+            </div>
+
+            <div class="tournament">
+
+                <div class="t-top">
+                    <div class="t-title">
+                        FREE FIRE FIRST TOURNAMENT EVER
+                    </div>
+
+                    <div class="status open">
+                        OPEN
+                    </div>
+                </div>
+
+                <div class="t-meta">
+                    <span>🏆 ₹2,800 Prize</span>
+                    <span>💰 ₹150 Entry</span>
+                    <span>👥 16/24 Teams</span>
+                    <span>📅 30 Oct • 4:00 PM</span>
+                </div>
+
+                <div class="t-bottom">
+                    <small style="color:var(--muted)">
+                        3 Matches
+                    </small>
+
+                    <button class="join-btn">
+                        JOIN TOURNAMENT
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="tournament">
+
+                <div class="t-top">
+                    <div class="t-title">
+                        VOIDFX NIGHT CLASH
+                    </div>
+
+                    <div class="status live">
+                        LIVE
+                    </div>
+                </div>
+
+                <div class="t-meta">
+                    <span>🏆 ₹5,000 Prize</span>
+                    <span>👥 32 Teams</span>
+                    <span>🎮 Squad</span>
+                </div>
+
+                <div class="t-bottom">
+                    <small style="color:var(--red)">
+                        Registration closed
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <h2>Leaderboard</h2>
+
+                <span class="view-all" onclick="showPage('leaderboard')">
+                    Full ranking
+                </span>
+            </div>
+
+            <div class="rank-row">
+                <div class="rank first">1</div>
+                <div class="rank-name">TEAM ALPHA</div>
+                <div class="points">182</div>
+            </div>
+
+            <div class="rank-row">
+                <div class="rank">2</div>
+                <div class="rank-name">VOID WARRIORS</div>
+                <div class="points">176</div>
+            </div>
+
+            <div class="rank-row">
+                <div class="rank">3</div>
+                <div class="rank-name">TEAM X</div>
+                <div class="points">161</div>
+            </div>
+
+            <div class="rank-row">
+                <div class="rank">4</div>
+                <div class="rank-name">RAVEN ESPORTS</div>
+                <div class="points">154</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="grid">
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <h2>My Team</h2>
+
+                <span class="view-all" onclick="showPage('teams')">
+                    Manage
+                </span>
+            </div>
+
+            <div class="team-card">
+
+                <div class="team-name">
+                    VOID WARRIORS
+                </div>
+
+                <div class="players">
+
+                    <div class="player">
+                        <div class="player-avatar">N</div>
+
+                        <div class="player-name">
+                            <span id="teamPlayerName">Nitesh</span>
+                        </div>
+
+                        <div class="player-role">
+                            LEADER
+                        </div>
+                    </div>
+
+                    <div class="player">
+                        <div class="player-avatar">P2</div>
+                        <div class="player-name">Player Two</div>
+                        <div class="player-role">MEMBER</div>
+                    </div>
+
+                    <div class="player">
+                        <div class="player-avatar">P3</div>
+                        <div class="player-name">Player Three</div>
+                        <div class="player-role">MEMBER</div>
+                    </div>
+
+                    <div class="player">
+                        <div class="player-avatar">P4</div>
+                        <div class="player-name">Player Four</div>
+                        <div class="player-role">MEMBER</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <h2>Recent Activity</h2>
+            </div>
+
+            <div class="notification">
+
+                <div class="n-icon">🏆</div>
+
+                <div class="n-text">
+                    Tournament registration confirmed.
+                    <div class="n-time">2 hours ago</div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <div class="n-icon">🎮</div>
+
+                <div class="n-text">
+                    Your team has been added to the tournament.
+                    <div class="n-time">Yesterday</div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <div class="n-icon">💰</div>
+
+                <div class="n-text">
+                    Prize reward updated.
+                    <div class="n-time">3 days ago</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TOURNAMENTS ================= -->
+
+<section class="page" id="tournaments">
+
+    <div class="page-title">
+        <h1>Tournaments</h1>
+        <p>Discover and join upcoming VOIDFX competitions.</p>
+    </div>
+
+    <div class="panel">
+
+        <div class="tournament">
+
+            <div class="t-top">
+                <div class="t-title">
+                    FREE FIRE FIRST TOURNAMENT EVER
+                </div>
+
+                <div class="status open">
+                    REGISTRATION OPEN
+                </div>
+            </div>
+
+            <div class="t-meta">
+                <span>🏆 ₹2,800 Prize Pool</span>
+                <span>💰 ₹150 Entry</span>
+                <span>👥 16/24 Teams</span>
+                <span>📅 30 Oct 2026</span>
+                <span>⏰ 4:00 PM</span>
+                <span>🎮 Squad</span>
+            </div>
+
+            <div class="t-bottom">
+
+                <small style="color:var(--muted)">
+                    Bermuda • NexTerra • Solara
+                </small>
+
+                <button class="join-btn">
+                    JOIN NOW
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="tournament">
+
+            <div class="t-top">
+                <div class="t-title">
+                    VOIDFX NIGHT CLASH
+                </div>
+
+                <div class="status open">
+                    OPEN
+                </div>
+            </div>
+
+            <div class="t-meta">
+                <span>🏆 ₹5,000 Prize Pool</span>
+                <span>💰 ₹200 Entry</span>
+                <span>👥 20/32 Teams</span>
+                <span>📅 Coming Soon</span>
+            </div>
+
+            <div class="t-bottom">
+
+                <small style="color:var(--muted)">
+                    Squad Tournament
+                </small>
+
+                <button class="join-btn">
+                    VIEW
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TEAMS ================= -->
+
+<section class="page" id="teams">
+
+    <div class="page-title">
+        <h1>My Teams</h1>
+        <p>Manage your squads and players.</p>
+    </div>
+
+    <div class="panel">
+
+        <div class="team-card">
+
+            <div class="team-name">
+                VOID WARRIORS
+            </div>
+
+            <div class="players">
+
+                <div class="player">
+                    <div class="player-avatar">N</div>
+                    <div class="player-name" id="teamName2">Nitesh</div>
+                    <div class="player-role">LEADER</div>
+                </div>
+
+                <div class="player">
+                    <div class="player-avatar">P2</div>
+                    <div class="player-name">Player Two</div>
+                    <div class="player-role">MEMBER</div>
+                </div>
+
+                <div class="player">
+                    <div class="player-avatar">P3</div>
+                    <div class="player-name">Player Three</div>
+                    <div class="player-role">MEMBER</div>
+                </div>
+
+                <div class="player">
+                    <div class="player-avatar">P4</div>
+                    <div class="player-name">Player Four</div>
+                    <div class="player-role">MEMBER</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEADERBOARD ================= -->
+
+<section class="page" id="leaderboard">
+
+    <div class="page-title">
+        <h1>Leaderboard</h1>
+        <p>Top performing teams across VOIDFX tournaments.</p>
+    </div>
+
+    <div class="panel">
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Matches</th>
+                        <th>Wins</th>
+                        <th>Kills</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>🥇 1</td>
+                        <td>TEAM ALPHA</td>
+                        <td>24</td>
+                        <td>10</td>
+                        <td>162</td>
+                        <td><strong>182</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>🥈 2</td>
+                        <td>VOID WARRIORS</td>
+                        <td>24</td>
+                        <td>8</td>
+                        <td>137</td>
+                        <td><strong>176</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>🥉 3</td>
+                        <td>TEAM X</td>
+                        <td>20</td>
+                        <td>7</td>
+                        <td>129</td>
+                        <td><strong>161</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>RAVEN ESPORTS</td>
+                        <td>18</td>
+                        <td>6</td>
+                        <td>120</td>
+                        <td><strong>154</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section class="page" id="notifications">
+
+    <div class="page-title">
+        <h1>Notifications</h1>
+        <p>Stay updated with your VOIDFX activity.</p>
+    </div>
+
+    <div class="panel">
+
+        <div class="notification">
+            <div class="n-icon">🏆</div>
+            <div class="n-text">
+                Tournament registration confirmed.
+                <div class="n-time">2 hours ago</div>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="n-icon">🎮</div>
+            <div class="n-text">
+                Your team has been registered successfully.
+                <div class="n-time">Yesterday</div>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="n-icon">📢</div>
+            <div class="n-text">
+                New VOIDFX tournament announced.
+                <div class="n-time">2 days ago</div>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="n-icon">💰</div>
+            <div class="n-text">
+                Your prize balance has been updated.
+                <div class="n-time">3 days ago</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section class="page" id="profile">
+
+    <div class="page-title">
+        <h1>My Profile</h1>
+        <p>Your VOIDFX player identity.</p>
+    </div>
+
+    <div class="profile-card">
+
+        <div class="profile-large" id="profileAvatar">
+            V
+        </div>
+
+        <h2 id="profileName">
+            Player
+        </h2>
+
+        <div class="email" id="profileEmail">
+            Loading email...
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info">
+                <div class="info-label">PLAYER ID</div>
+                <div class="info-value">VFX-001</div>
+            </div>
+
+            <div class="info">
+                <div class="info-label">TEAM</div>
+                <div class="info-value">VOID WARRIORS</div>
+            </div>
+
+            <div class="info">
+                <div class="info-label">TOURNAMENTS</div>
+                <div class="info-value">6</div>
+            </div>
+
+            <div class="info">
+                <div class="info-label">PRIZE WON</div>
+                <div class="info-value">₹2,400</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section class="page" id="settings">
+
+    <div class="page-title">
+        <h1>Settings</h1>
+        <p>Manage your VOIDFX account preferences.</p>
+    </div>
+
+    <div class="panel">
+
+        <div class="setting">
+
+            <div>
+                <div class="setting-title">
+                    Tournament Notifications
+                </div>
+
+                <div class="setting-description">
+                    Receive alerts for your upcoming matches.
+                </div>
+            </div>
+
+            <div class="toggle"></div>
+
+        </div>
+
+        <div class="setting">
+
+            <div>
+                <div class="setting-title">
+                    Match Reminders
+                </div>
+
+                <div class="setting-description">
+                    Get reminders before tournament matches.
+                </div>
+            </div>
+
+            <div class="toggle"></div>
+
+        </div>
+
+        <div class="setting">
+
+            <div>
+                <div class="setting-title">
+                    Email Updates
+                </div>
+
+                <div class="setting-description">
+                    Receive important account updates.
+                </div>
+            </div>
+
+            <div class="toggle"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= SUPABASE ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/*
+========================================================
+SUPABASE CONFIG
+========================================================
+
+Replace ONLY these two values.
+
+Use your Supabase:
+Project URL
++
+Publishable/Anon Key
+
+NEVER put the service_role key here.
+*/
+
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ================= AUTH CHECK ================= */
+
+async function checkUser(){
+
+    try{
+
+        const {
+            data:{
+                user
+            },
+            error
+        } = await supabaseClient.auth.getUser();
+
+        if(error || !user){
+
+            window.location.href = "index.html";
+            return;
+
+        }
+
+        loadUser(user);
+
+    }catch(error){
+
+        console.error(error);
+
+        window.location.href = "index.html";
+
+    }
+
+}
+
+
+/* ================= USER DATA ================= */
+
+function loadUser(user){
+
+    const email =
+        user.email || "No email";
+
+    /*
+    Supabase user metadata can contain:
+    full_name
+    name
+    username
+
+    depending on how signup was created.
+    */
+
+    let name =
+        user.user_metadata?.username ||
+        user.user_metadata?.full_name ||
+        user.user_metadata?.name ||
+        email.split("@")[0];
+
+    name = String(name);
+
+    const firstLetter =
+        name.charAt(0).toUpperCase();
+
+
+    /* Navbar */
+
+    document.getElementById("navName")
+        .textContent = name;
+
+    document.getElementById("navAvatar")
+        .textContent = firstLetter;
+
+
+    /* Welcome */
+
+    document.getElementById("welcomeName")
+        .textContent = name;
+
+
+    /* Team */
+
+    document.getElementById("teamPlayerName")
+        .textContent = name;
+
+    document.getElementById("teamName2")
+        .textContent = name;
+
+
+    /* Profile */
+
+    document.getElementById("profileName")
+        .textContent = name;
+
+    document.getElementById("profileEmail")
+        .textContent = email;
+
+    document.getElementById("profileAvatar")
+        .textContent = firstLetter;
+
+
+    /* Remove loading screen */
+
+    setTimeout(() => {
+
+        document.getElementById("loading")
+            .style.display = "none";
+
+    },300);
+
+}
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(page){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+
+    const target =
+        document.getElementById(page);
+
+    if(target){
+
+        target.classList.add("active");
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(button => {
+
+            button.classList.remove("active");
+
+        });
+
+
+    const activeButton =
+        document.querySelector(
+            `.nav-item[data-page="${page}"]`
+        );
+
+    if(activeButton){
+
+        activeButton.classList.add("active");
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+async function logout(){
+
+    const {
+        error
+    } = await supabaseClient.auth.signOut();
+
+    if(error){
+
+        console.error(error);
+
+        alert("Logout failed. Please try again.");
+
+        return;
+
+    }
+
+    window.location.href = "index.html";
+
+}
+
+
+/* ================= AUTH STATE ================= */
+
+supabaseClient.auth.onAuthStateChange(
+    (event,session) => {
+
+        if(event === "SIGNED_OUT"){
+
+            window.location.href = "index.html";
+
+        }
+
+    }
+);
+
+
+/* ================= START ================= */
+
+checkUser();
+
+</script>
+
+</body>
+</html>
